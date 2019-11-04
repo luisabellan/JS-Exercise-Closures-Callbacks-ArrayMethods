@@ -217,9 +217,54 @@ console.log(processContains('ladygaga',['foo', 'bar'],sayOpinion)); //returns: s
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
 */
-function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */) {
-  /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
+/**
+ * ### Challenge `processDuplicateFree`
+ * THIS IS A STRETCH PROBLEM! ATTEMPT ONLY AFTER COMPLETING ALL NON-STRETCH CHALLENGES!
+ * THIS IS A STRETCH PROBLEM! ATTEMPT ONLY AFTER COMPLETING ALL NON-STRETCH CHALLENGES!
+ * 
+ * @instructions
+ * Implement a higher-order function called `processDuplicateFree`.
+ * It takes two arguments:
+ * @param list array of elements of any kind.
+ * @param callback function that takes an array as its argument.
+ * @returns the result of invoking `callback` passing a de-duped version of `list`.
+ * 
+ * Examples of usage of this higher-order function:
+ * [1] Invoking `processDuplicateFree` passing `[1,1,1,2]` and `(arr) => arr`,
+ * should return `[1,2]`.
+ * 
+ * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
+ * should return 3.
+*/
+function processDuplicateFree(list,callback) {
+
+  return callback(removeDups(list));
+  
 }
+
+function removeDups(items) {
+  let unique = [];
+  items.forEach(item => {
+    if(!unique.includes(item)){
+      unique.push(item);
+    }
+
+  });
+      
+   
+  return unique;
+  
+}
+
+console.log(processDuplicateFree([1,1,2,2,3,3,4,5],removeDups)); //returns: [1,2,3,4,5]
+
+/////////////// HIGHER-ORDER ARRAY METHODS ///////////////
+/////////////// HIGHER-ORDER ARRAY METHODS ///////////////
+
+// A local community center is holding a fund raising 5k fun run and has invited
+// 50 small businesses to make a small donation on their behalf for some much needed
+// updates to their facilities. Each business has assigned a representative
+// to attend the event along with a small donation.
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
