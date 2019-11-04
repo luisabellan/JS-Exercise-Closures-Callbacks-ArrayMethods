@@ -15,7 +15,7 @@
  * should return 'foofoo'.
 */
 function processFirstItem(stringList, callback) {
-  return callback(stringList[0])
+  return callback(stringList[0]);
 }
 
 // ⭐️ Example Challenge END ⭐️
@@ -52,6 +52,8 @@ function processLength(list,callback) {
   return callback(list.length);
 }
 
+
+
 /**
  * ### Challenge `processLastItem`
  * 
@@ -70,9 +72,11 @@ function processLastItem(stringList,callback) {
   return callback(stringList[stringList.length-1]);
 }
 
-function callback(str){
+function doubledStr(str){
   return str + str;
 }
+
+console.log(processLastItem(['foo', 'bar'], doubledStr));
 
 /**
  * ### Challenge `processSum`
@@ -98,12 +102,21 @@ function processSum(numberList,callback) {
 }
 
 
-function callback(num){
+function addIsABigNumber(num){
+
+  
+  return num + " is a big number!"; 
+  
+}
+
+function addOneThousand(num){
 
   
   return num + 1000;
   
 }
+
+console.log(addIsABigNumber(30)) //returns: 30 is a big number!
 
 
 
@@ -128,10 +141,23 @@ function callback(num){
  * [2] Invoking `processProduct` passing 25 and 0 and `(num) => num + 1000`,
  * should return 1000.
 */
+
+
 function processProduct(num1,num2,callback) {
   return callback(num1 * num2);
 }
 
+function isABigNumber(num){
+  return num + " is a big number!";
+}
+
+function plusOneThousand(num){
+  return num + 1000;
+}
+
+
+console.log(processProduct(25,0,isABigNumber)); // returns: 0 is a big number! 
+console.log(processProduct(25,0,plusOneThousand)); // returns: 1000 
 
 
 /**
@@ -157,6 +183,17 @@ function processProduct(num1,num2,callback) {
 function processContains(item,list,callback) {
   return callback(list.includes(item));
 }
+
+function sayOpinion(bool){
+  if(bool===true){
+    return "nice!";
+  }else{
+    return "sad";
+  }
+}
+
+console.log(processContains('foo',['foo', 'bar'],sayOpinion)); //returns: nice!
+console.log(processContains('ladygaga',['foo', 'bar'],sayOpinion)); //returns: sad
 
 
 
@@ -297,6 +334,10 @@ function counterMaker() {
 }
 
 
+const counter = counterMaker()
+console.log(counter())
+console.log(counter())
+console.log(counter())
 
 /**
  * ### Challenge `counterMakerWithLimit`
@@ -330,6 +371,18 @@ function counterMakerWithLimit(limit) {
       }
   };
 }
+
+// using anotherCounter instead of counter because it conflicts with variable counter from the previous exercise
+const anotherCounter = counterMakerWithLimit(3)
+console.log(anotherCounter()) // returns: 0
+console.log(anotherCounter()) // returns: 1
+console.log(anotherCounter()) // returns: 2
+console.log(anotherCounter()) // returns: 3
+console.log(anotherCounter()) // returns: 0
+console.log(anotherCounter()) // returns: 1
+console.log(anotherCounter()) // returns: 2
+console.log(anotherCounter()) // returns: 3
+console.log(anotherCounter()) // returns: 0
 
 /////////////// END OF CHALLENGE ///////////////
 /////////////// END OF CHALLENGE ///////////////
