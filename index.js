@@ -117,6 +117,7 @@ function addOneThousand(num){
 }
 
 console.log(addIsABigNumber(30)) //returns: 30 is a big number!
+console.log(addOneThousand(30)) //returns: 30 is a big number!
 
 
 
