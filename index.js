@@ -116,8 +116,8 @@ function addOneThousand(num){
   
 }
 
-console.log(addIsABigNumber(30)) //returns: 30 is a big number!
-console.log(addOneThousand(30)) //returns: 30 is a big number!
+console.log(processSum( [10,20,30], addIsABigNumber(30) ); //returns: 60 is a big number!
+console.log(processSum( [], addOneThousand(30) ); //returns: 1000 is a big number!
 
 
 
