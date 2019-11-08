@@ -15,7 +15,7 @@
  * should return 'foofoo'.
 */
 function processFirstItem(stringList, callback) {
-  return callback(stringList[0])
+  return callback(stringList[0]);
 }
 
 // ⭐️ Example Challenge END ⭐️
@@ -48,9 +48,11 @@ function processFirstItem(stringList, callback) {
  * [2] Invoking `processLength` passing `[]` and `(num) => "There are " + num`,
  * should return "There are 0".
 */
-function processLength(/* CODE HERE */) {
-  /* CODE HERE */
+function processLength(list,callback) {
+  return callback(list.length);
 }
+
+
 
 /**
  * ### Challenge `processLastItem`
@@ -66,9 +68,15 @@ function processLength(/* CODE HERE */) {
  * Invoking `processLastItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'barbar'.
 */
-function processLastItem(/* CODE HERE */) {
-  /* CODE HERE */
+function processLastItem(stringList,callback) {
+  return callback(stringList[stringList.length-1]);
 }
+
+function doubledStr(str){
+  return str + str;
+}
+
+console.log(processLastItem(['foo', 'bar'], doubledStr));
 
 /**
  * ### Challenge `processSum`
@@ -87,9 +95,34 @@ function processLastItem(/* CODE HERE */) {
  * [2] Invoking `processSum` passing `[]` and `(num) => num + 1000`,
  * should return 1000.
 */
-function processSum(/* CODE HERE */) {
-  /* CODE HERE */
+function processSum(numberList,callback) {
+
+  return callback(numberList.reduce( (acc,item) => acc + item,0 ));
+    
 }
+
+
+function addIsABigNumber(num){
+
+  
+  return num + " is a big number!"; 
+  
+}
+
+function addOneThousand(num){
+
+  
+  return num + 1000;
+  
+}
+
+console.log(addIsABigNumber(30)) //returns: 30 is a big number!
+console.log(addOneThousand(30)) //returns: 30 is a big number!
+
+
+
+
+
 
 /**
  * ### Challenge `processProduct`
@@ -109,9 +142,24 @@ function processSum(/* CODE HERE */) {
  * [2] Invoking `processProduct` passing 25 and 0 and `(num) => num + 1000`,
  * should return 1000.
 */
-function processProduct(/* CODE HERE */) {
-  /* CODE HERE */
+
+
+function processProduct(num1,num2,callback) {
+  return callback(num1 * num2);
 }
+
+function isABigNumber(num){
+  return num + " is a big number!";
+}
+
+function plusOneThousand(num){
+  return num + 1000;
+}
+
+
+console.log(processProduct(25,0,isABigNumber)); // returns: 0 is a big number! 
+console.log(processProduct(25,0,plusOneThousand)); // returns: 1000 
+
 
 /**
  * ### Challenge `processContains`
@@ -133,9 +181,23 @@ function processProduct(/* CODE HERE */) {
  * "lady gaga" and `['foo', 'bar']` and `(bool) => bool ? 'nice!' : 'sad'`,
  * should return "sad".
 */
-function processContains(/* CODE HERE */) {
-  /* CODE HERE */
+function processContains(item,list,callback) {
+  return callback(list.includes(item));
 }
+
+function sayOpinion(bool){
+  if(bool===true){
+    return "nice!";
+  }else{
+    return "sad";
+  }
+}
+
+console.log(processContains('foo',['foo', 'bar'],sayOpinion)); //returns: nice!
+console.log(processContains('ladygaga',['foo', 'bar'],sayOpinion)); //returns: sad
+
+
+
 
 /**
  * ### Challenge `processDuplicateFree`
@@ -156,9 +218,54 @@ function processContains(/* CODE HERE */) {
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
 */
-function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */) {
-  /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
+/**
+ * ### Challenge `processDuplicateFree`
+ * THIS IS A STRETCH PROBLEM! ATTEMPT ONLY AFTER COMPLETING ALL NON-STRETCH CHALLENGES!
+ * THIS IS A STRETCH PROBLEM! ATTEMPT ONLY AFTER COMPLETING ALL NON-STRETCH CHALLENGES!
+ * 
+ * @instructions
+ * Implement a higher-order function called `processDuplicateFree`.
+ * It takes two arguments:
+ * @param list array of elements of any kind.
+ * @param callback function that takes an array as its argument.
+ * @returns the result of invoking `callback` passing a de-duped version of `list`.
+ * 
+ * Examples of usage of this higher-order function:
+ * [1] Invoking `processDuplicateFree` passing `[1,1,1,2]` and `(arr) => arr`,
+ * should return `[1,2]`.
+ * 
+ * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
+ * should return 3.
+*/
+function processDuplicateFree(list,callback) {
+
+  return callback(removeDups(list));
+  
 }
+
+function removeDups(items) {
+  let unique = [];
+  items.forEach(item => {
+    if(!unique.includes(item)){
+      unique.push(item);
+    }
+
+  });
+      
+   
+  return unique;
+  
+}
+
+console.log(processDuplicateFree([1,1,2,2,3,3,4,5],removeDups)); //returns: [1,2,3,4,5]
+
+/////////////// HIGHER-ORDER ARRAY METHODS ///////////////
+/////////////// HIGHER-ORDER ARRAY METHODS ///////////////
+
+// A local community center is holding a fund raising 5k fun run and has invited
+// 50 small businesses to make a small donation on their behalf for some much needed
+// updates to their facilities. Each business has assigned a representative
+// to attend the event along with a small donation.
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -178,8 +285,14 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames(/* CODE HERE */) {
-  /* CODE HERE */
+function getFullNames(runners) {
+
+ 
+  const arr = [];
+  runners.forEach(r => arr.push(`${r.last_name}, ${r.first_name}`));
+  
+  return arr;
+ 
 }
 
 /**
@@ -194,8 +307,14 @@ function getFullNames(/* CODE HERE */) {
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
-function firstNamesAllCaps(/* CODE HERE */) {
-  /* CODE HERE */
+function firstNamesAllCaps(runners) {
+  
+  const arr = [];
+  runners.forEach(r => arr.push(r.first_name.toUpperCase()));
+
+
+  return arr;
+
 }
 
 /**
@@ -211,8 +330,11 @@ function firstNamesAllCaps(/* CODE HERE */) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(/* CODE HERE */) {
-  /* CODE HERE */
+function getRunnersByTShirtSize(runners,tShirtSize) {
+  
+  let someRunners = runners.filter(item => item.shirt_size === tShirtSize);
+  //console.log(someRunners);
+  return someRunners;
 }
 
 /**
@@ -225,8 +347,10 @@ function getRunnersByTShirtSize(/* CODE HERE */) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(/* CODE HERE */) {
-  /* CODE HERE */
+function tallyUpDonations(runners) {
+  let sum = runners.reduce( (total, currentValue) => total + currentValue.donation, 0);
+  return sum;
+  
 }
 
 /////////////// CLOSURES ///////////////
@@ -246,13 +370,20 @@ function tallyUpDonations(/* CODE HERE */) {
  * etc
 */
 function counterMaker() {
-  // BROKEN CODE STARTS
-  const count = 0;
-  function counter() {
-    ++count
-  }
-  // BROKEN CODE ENDS
+  
+  let count = 0;
+  return function counter() {
+
+    return count++;
+  };
+ 
 }
+
+
+const counter = counterMaker()
+console.log(counter())
+console.log(counter())
+console.log(counter())
 
 /**
  * ### Challenge `counterMakerWithLimit`
@@ -274,9 +405,30 @@ function counterMaker() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
-  /* CODE HERE */
+function counterMakerWithLimit(limit) {
+  let count = 0;
+  return function counter() {
+      if (count <= limit){
+        return count++;
+      }else {
+         count = 0;
+        return count++;
+       
+      }
+  };
 }
+
+// using anotherCounter instead of counter because it conflicts with variable counter from the previous exercise
+const anotherCounter = counterMakerWithLimit(3)
+console.log(anotherCounter()) // returns: 0
+console.log(anotherCounter()) // returns: 1
+console.log(anotherCounter()) // returns: 2
+console.log(anotherCounter()) // returns: 3
+console.log(anotherCounter()) // returns: 0
+console.log(anotherCounter()) // returns: 1
+console.log(anotherCounter()) // returns: 2
+console.log(anotherCounter()) // returns: 3
+console.log(anotherCounter()) // returns: 0
 
 /////////////// END OF CHALLENGE ///////////////
 /////////////// END OF CHALLENGE ///////////////
